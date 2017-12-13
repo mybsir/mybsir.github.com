@@ -1,3 +1,11 @@
+---
+layout: post
+title:  Docker-CE 安装
+categories: Docker
+description: Docker-CE 安装
+keywords: Docker,Docker-CE
+---
+
 # Docker-CE 安装
 
 ## 官方方法
