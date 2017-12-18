@@ -1,18 +1,15 @@
 ---
 layout: page
 title: About
-description: 打码改变世界
-keywords: Zhuang Ma, 马壮
+description: 典韦
+keywords: 典韦, dianwei, Dian Wei
 comments: true
 menu: 关于
 permalink: /about/
 ---
 
-我是马壮，码而生，码而立。
+我是典韦
 
-仰慕「优雅编码的艺术」。
-
-坚信熟能生巧，努力改变人生。
 
 ## 联系
 
