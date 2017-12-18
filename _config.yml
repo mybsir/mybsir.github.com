@@ -6,8 +6,8 @@ url:
 date_format: "ordinal"
 title: 乐邦
 subtitle: "My Blog"
-description: "苗永宾的个人博客"
-keywords: 码志, Zhuang Ma, mzlogin, mazhuang
+description: "典韦的个人博客"
+keywords: miaoyongbin,yongbin,典韦
 timezone: Asia/Shanghai
 encoding: "utf-8"
 side_bar_repo_limit: 5
@@ -15,11 +15,11 @@ side_bar_repo_limit: 5
 # ---------------- #
 #      Author      #
 # ---------------- #
-author: Zhuang Ma
+author: Yongbin Miao
 organization: app-echo.com
 organization_url: 
 github_username: mybsir
-location: Wuhan, China
+location: Shanghai, China
 email: myb_sir@126.com
 
 # ---------------- #
@@ -34,9 +34,9 @@ navs:
     href: /categories/
     label: 分类
 
-  -
-    href: /wiki/
-    label: 维基
+#  -
+#    href: /wiki/
+#    label: 维基
 
   -
     href: /links/
