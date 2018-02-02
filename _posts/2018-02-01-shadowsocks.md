@@ -74,6 +74,6 @@ service iptables restart
 下载地址：https://github.com/shadowsocks/shadowsocks-iOS/releases
 ```
 
-![](../images/posts/k8s/mac_shadowsocks_1.png)
-![](../images/posts/k8s/mac_shadowsocks_2.png)
+![](/images/posts/k8s/mac_shadowsocks_1.png)
+![](/images/posts/k8s/mac_shadowsocks_2.png)
 
