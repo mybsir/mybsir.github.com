@@ -77,3 +77,112 @@ service iptables restart
 ![](/images/posts/k8s/mac_shadowsocks_1.png)
 ![](/images/posts/k8s/mac_shadowsocks_2.png)
 
+### 3.2 Centos代理
+
+#### 3.2.1 shadowsocks安装与设置
+
+```
+yum -y install epel-release
+yum -y install python-pip
+pip install shadowsocks
+```
+
+#### 3.2.2 配置shadowsocks客户端
+
+```
+vi /etc/shadowsocks.json
+
+{
+    "server":"SERVER-IP",           # 你的服务器ip
+    "server_port":PORT,             # 服务器端口
+    "local_address": "127.0.0.1",   # 若想其它机器可访问，设置为0.0.0.0
+    "local_port":1080,              # sock端口
+    "password":"PASSWORD",          # 密码
+    "timeout":300,
+    "method":"aes-256-cfb"          # 加密方式
+}
+
+```
+
+#### 3.2.3 编写shadowsocks服务（CENTOS 7）
+
+```
+vi /etc/systemd/system/shadowsocks.service
+
+
+[Unit]
+Description=Shadowsocks
+
+[Service]
+TimeoutStartSec=0
+ExecStart=/usr/bin/sslocal -c /etc/shadowsocks.json
+
+[Install]
+WantedBy=multi-user.target
+
+
+# 启动服务
+systemctl start shadowsocks
+systemctl enable shadowsocks
+```
+
+#### 3.2.4 启动shadowsocks服务（CENTOS 6）
+
+```
+nohup sslocal -c /etc/shadowsocks.json /dev/null 2>&1 &
+```
+
+
+#### 3.2.5 安装Privoxy
+
+> 安装好了`shadowsocks`，但是我们在shell里执行的命令，发起的网络请求并不支持`sock5`代理，只支持`http/https`代理。为此我们需要安装`privoxy`代理，把电脑上的所有HTTP请求转发给`shadowsocks`
+
+```
+yum -y install privoxy
+```
+
+#### 3.2.6 配置privoxy
+
+```
+echo 'forward-socks5 / 127.0.0.1:1080 .' >> /etc/privoxy/config
+```
+
+#### 3.2.7 启动并保持开机自启
+
+```
+systemctl start privoxy
+systemctl enable privoxy
+```
+
+### Docker代理设置
+
+```
+vi /etc/systemd/system/docker.service.d/http-proxy.conf
+
+[Service]
+Environment="HTTP_PROXY=http://127.0.0.1:8118/" "NO_PROXY=localhost,127.0.0.1,gj7l88s1.mirror.aliyuncs.com,docker.io,registry.cn-hangzhou.aliyuncs.com,acs-cn-hangzhou-mirror.oss-cn-hangzhou.aliyuncs.com"
+
+
+# NO_PROXY可让其他镜像继续使用阿里云加速。
+
+```
+
+```
+#重启docker
+systemctl daemon-reload
+systemctl restart docker
+```
+
+
+#### 测试拉取镜像
+
+```
+[root@node2 ~]# docker pull  gcr.io/google_containers/kubernetes-dashboard-amd64:v1.8.0
+v1.8.0: Pulling from google_containers/kubernetes-dashboard-amd64
+39e01bcdd352: Pull complete
+Digest: sha256:71a0de5c6a21cb0c2fbcad71a4fef47acd3e61cd78109822d35e1742f9d8140d
+Status: Downloaded newer image for gcr.io/google_containers/kubernetes-dashboard-amd64:v1.8.0
+```
+
+
+**完结**
