@@ -185,7 +185,10 @@ Status: Downloaded newer image for gcr.io/google_containers/kubernetes-dashboard
 ```
 
 参考：
-http://www.wisely.top/2017/05/15/shadowsocks-privoxy-docker-centos-wall/
-http://www.cnblogs.com/tianhei/p/7428622.html
-https://docs.lvrui.io/2016/12/12/Linux%E4%B8%AD%E4%BD%BF%E7%94%A8ShadowSocks-Privoxy%E4%BB%A3%E7%90%86/
+
+(http://www.wisely.top/2017/05/15/shadowsocks-privoxy-docker-centos-wall/)
+
+(http://www.cnblogs.com/tianhei/p/7428622.html)
+
+(https://docs.lvrui.io/2016/12/12/Linux%E4%B8%AD%E4%BD%BF%E7%94%A8ShadowSocks-Privoxy%E4%BB%A3%E7%90%86/)
 **完结**
